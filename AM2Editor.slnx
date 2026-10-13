@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="../Another-Mediocre-2D-Engine/Engine/AM2E/AM2E.csproj" />
+  <Project Path="../FNA/FNA.Core.csproj" />
+  <Project Path="AM2Editor/AM2Editor.csproj" />
+</Solution>
