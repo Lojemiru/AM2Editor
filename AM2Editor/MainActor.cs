@@ -8,6 +8,8 @@ namespace AM2Editor;
 /// </summary>
 public class MainActor : Actor
 {
+    public static int SlotsTime = 0;
+    
     public MainActor() 
         : base(0, 0, null)
     {
@@ -19,5 +21,9 @@ public class MainActor : Actor
     {
         if (EntryPoint.Exiting)
             EngineCore.GracefulExit();
+
+        SlotsTime--;
+        
+        EntryPoint.SetTitle(SlotsTime % 3 == 1);
     }
 }
