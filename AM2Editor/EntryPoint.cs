@@ -110,7 +110,7 @@ public static class EntryPoint
             var flags = ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoBackground | ImGuiWindowFlags.NoMove |
                         ImGuiWindowFlags.NoResize | ImGuiWindowFlags.MenuBar;
             
-            //ImGui.SetNextWindowPos(new Vector2(0, 20));
+            ImGui.SetNextWindowPos(new Vector2(0, 20));
             //ImGui.SetNextWindowSize(new Vector2(1280, 700));
 
             if (CurrentMode != Mode.Open)
@@ -183,7 +183,7 @@ public static class EntryPoint
         foreach (var dir in contents)
         {
             var name = Path.GetFileName(dir);
-            if (ImGui.Button(name.Truncate()))
+            if (ImGui.Button(name))
             {
                 CurrentPath += $"/{name}";
             }
@@ -209,7 +209,7 @@ public static class EntryPoint
 
             ImGui.PushStyleColor(ImGuiCol.Button, isSln ? new Vector4(0, 0.5f, 0.2f, 1.0f) : new Vector4());
             
-            if (ImGui.Button(name.Truncate()) && isSln)
+            if (ImGui.Button(name) && isSln)
             {
                 LoadProject(Path.GetDirectoryName(Path.GetFullPath(file)));
                 
