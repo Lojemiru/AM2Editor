@@ -5,7 +5,11 @@ using AM2E;
 // TODO: This will get filled out with editor binds later.
 public enum Input
 {
-    Dummy,
+    ZoomIn,
+    ZoomOut,
+    LeftClick,
+    RightClick,
+    MiddleClick,
 }
 
 public static class EngineConfigurator

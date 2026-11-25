@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Numerics;
 using AM2E;
+using AM2E.Input;
 using ImGuiNET;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -24,6 +25,10 @@ public static class EntryPoint
     private static List<string> Objects = [];
     
     private static Mode CurrentMode = Mode.Open;
+    
+    private static WorldDef? World = null;
+
+    public static float Zoom = 1.0f;
     
     private enum Mode
     {
@@ -67,8 +72,16 @@ public static class EntryPoint
     public static void OnEntry()
     {
         SetTitle();
+     
+        InputManager.BindMouseButton(Input.ZoomOut, MouseButtons.WheelDown);
+        InputManager.BindMouseButton(Input.ZoomIn, MouseButtons.WheelUp);
+        InputManager.BindMouseButton(Input.LeftClick, MouseButtons.Left);
+        InputManager.BindMouseButton(Input.RightClick, MouseButtons.Right);
+        InputManager.BindMouseButton(Input.MiddleClick, MouseButtons.Middle);
         
         _ = new MainActor();
+        
+        World = new WorldDef();
 
         ImGui.GetIO().ConfigFlags |= ImGuiConfigFlags.DockingEnable;
         
@@ -140,6 +153,7 @@ public static class EntryPoint
                 case Mode.Settings:
                     break;
                 case Mode.Levels:
+                    World?.Draw();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
